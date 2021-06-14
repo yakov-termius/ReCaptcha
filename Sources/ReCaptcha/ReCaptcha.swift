@@ -191,6 +191,14 @@ public class ReCaptcha {
     public func didFinishLoading(_ closure: (() -> Void)?) {
         manager.onDidFinishLoading = closure
     }
+    
+    /**
+     - parameter closure: A closure that is called when ReCaptcha view will be shown.
+     Doesn't get called in case of invisible validation.
+    */
+    public func onWillShowReCaptchaView(_ closure: (() -> Void)?) {
+        manager.onWillShowReCaptchaView = closure
+    }
 
     // MARK: - Development
 #if DEBUG

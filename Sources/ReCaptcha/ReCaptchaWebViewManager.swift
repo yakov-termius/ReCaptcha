@@ -52,6 +52,9 @@ internal class ReCaptchaWebViewManager {
             }
         }
     }
+    
+    /// Notifies that ReCaptcha view will be shown. Doesn't call in case of invisible validation.
+    var onWillShowReCaptchaView: (() -> Void)?
 
     /// Configures the webview for display when required
     var configureWebView: ((WKWebView) -> Void)?
@@ -199,6 +202,7 @@ fileprivate extension ReCaptchaWebViewManager {
             }
 
         case .showReCaptcha:
+            onWillShowReCaptchaView?()
             DispatchQueue.once(token: configureWebViewDispatchToken) { [weak self] in
                 guard let `self` = self else { return }
                 self.configureWebView?(self.webView)
