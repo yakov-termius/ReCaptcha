@@ -248,6 +248,7 @@ fileprivate extension ReCaptchaWebViewManager {
     func executeJS(command: JSCommand) {
         guard didFinishLoading else {
             // Hasn't finished loading all the resources
+            self.decoder.send(error: .internetOffline)
             return
         }
 

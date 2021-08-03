@@ -12,6 +12,9 @@ import Foundation
 public enum ReCaptchaError: Error, CustomStringConvertible {
     /// Unexpected error
     case unexpected(Error)
+    
+    /// Device is not connected to the internet
+    case internetOffline
 
     /// Could not load the HTML embedded in the bundle
     case htmlLoadError
@@ -40,6 +43,9 @@ public enum ReCaptchaError: Error, CustomStringConvertible {
         case .unexpected(let error):
             return "Unexpected Error: \(error)"
 
+        case .internetOffline:
+            return "Device is not connected to the internet"
+            
         case .htmlLoadError:
             return "Could not load embedded HTML"
 
